@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -27,11 +27,42 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 const App: () => React$Node = () => {
+  const [enteredGoal, setEnteredGoal] = useState('');
+  const [goals, setGoals] = useState(['moo', 'meow']);
+
+  const goalInputHandler = enteredText => {
+    setEnteredGoal(enteredText);
+  };
+
+  const handleOnPress = newGoal => {
+    const goalsList = goals.push(newGoal);
+    setGoals(goalsList);
+    setEnteredGoal('');
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
-        <TextInput placeholder={'Add a goal'} style={styles.input} />
-        <Button title={'Add'} />
+        <TextInput
+          placeholder={'Add a goal'}
+          style={styles.input}
+          value={enteredGoal}
+          onChangeText={() => {
+            goalInputHandler(this.value);
+          }}
+        />
+
+        <Button
+          title={'Add'}
+          onPress={() => {
+            handleOnPress(enteredGoal);
+          }}
+        />
+      </View>
+      <View style={styles.list}>
+        {goals.map((goal, index) => (
+          <Text key={index}>{goal}</Text>
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -49,5 +80,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '80%',
   },
+  list: {},
 });
 export default App;
