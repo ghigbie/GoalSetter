@@ -34,9 +34,8 @@ const App: () => React$Node = () => {
     setEnteredGoal(enteredText);
   };
 
-  const handleOnPress = newGoal => {
-    const goalsList = goals.push(newGoal);
-    setGoals(goalsList);
+  const addGoalHandler = () => {
+    setGoals(currentGoals => [...currentGoals, enteredGoal]);
     setEnteredGoal('');
   };
 
@@ -47,17 +46,10 @@ const App: () => React$Node = () => {
           placeholder={'Add a goal'}
           style={styles.input}
           value={enteredGoal}
-          onChangeText={() => {
-            goalInputHandler(this.value);
-          }}
+          onChangeText={goalInputHandler}
         />
 
-        <Button
-          title={'Add'}
-          onPress={() => {
-            handleOnPress(enteredGoal);
-          }}
-        />
+        <Button title={'Add'} onPress={addGoalHandler} />
       </View>
       <View style={styles.list}>
         {goals.map((goal, index) => (
