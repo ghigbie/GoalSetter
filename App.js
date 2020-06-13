@@ -51,11 +51,11 @@ const App: () => React$Node = () => {
             onPress={addGoalHandler}
           />
         </View>
-        <View style={styles.goalListContainer}>
+        <ScrollView style={styles.goalListContainer}>
           {goals.map((goal, index) => (
             <GoalItem key={index} goal={goal} />
           ))}
-        </View>
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

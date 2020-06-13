@@ -10,8 +10,17 @@ const GoalItem = ({goal}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
-  text: {},
+  container: {
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#ccc',
+    borderColor: '#888',
+    borderWidth: 1,
+    borderRadius: 4,
+  },
+  text: {
+    color: '#888',
+  },
 });
 
 export default GoalItem;
