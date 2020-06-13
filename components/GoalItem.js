@@ -1,5 +1,4 @@
-import react from 'react';
-import GoalItem from './components/GoalItem';
+import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 const GoalItem = ({goal}) => {
@@ -14,3 +13,5 @@ const styles = StyleSheet.create({
   container: {},
   text: {},
 });
+
+export default GoalItem;

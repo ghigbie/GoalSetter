@@ -51,7 +51,7 @@ const App: () => React$Node = () => {
             onPress={addGoalHandler}
           />
         </View>
-        <View style={styles.list}>
+        <View style={styles.goalListContainer}>
           {goals.map((goal, index) => (
             <GoalItem key={index} goal={goal} />
           ))}
@@ -76,6 +76,8 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   addButton: {},
-  list: {},
+  gaolListContainer: {
+    marginTop: 14,
+  },
 });
 export default App;
