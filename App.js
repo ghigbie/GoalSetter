@@ -51,11 +51,11 @@ const App: () => React$Node = () => {
             onPress={addGoalHandler}
           />
         </View>
-        <FlatList style={styles.goalListContainer}>
-          {goals.map((goal, index) => (
-            <GoalItem key={index} goal={goal} />
-          ))}
-        </FlatList>
+        <FlatList
+          style={styles.goalListContainer}
+          data={goals}
+          renderItem={goal => <GoalItem goal={goal.item} />}
+        />
       </View>
     </SafeAreaView>
   );
