@@ -11,7 +11,7 @@ import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
+  FlatList,
   View,
   Text,
   StatusBar,
@@ -51,11 +51,11 @@ const App: () => React$Node = () => {
             onPress={addGoalHandler}
           />
         </View>
-        <ScrollView style={styles.goalListContainer}>
+        <FlatList style={styles.goalListContainer}>
           {goals.map((goal, index) => (
             <GoalItem key={index} goal={goal} />
           ))}
-        </ScrollView>
+        </FlatList>
       </View>
     </SafeAreaView>
   );
