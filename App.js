@@ -19,43 +19,25 @@ import {
   TextInput,
 } from 'react-native';
 
+import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
 const App: () => React$Node = () => {
-  const [enteredGoal, setEnteredGoal] = useState('');
   const [goals, setGoals] = useState([
     {id: Math.random().toString(), goal: 'moo'},
   ]);
 
-  const goalInputHandler = enteredText => {
-    setEnteredGoal(enteredText);
-  };
-
-  const addGoalHandler = () => {
+  const addGoalHandler = payload => {
     setGoals(currentGoals => [
       ...currentGoals,
-      {id: Math.random().toString(), goal: enteredGoal},
+      {id: Math.random().toString(), goal: payload.goal},
     ]);
-    setEnteredGoal('');
   };
 
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
-        <View style={styles.addGoals}>
-          <TextInput
-            placeholder={'Add a goal'}
-            style={styles.input}
-            value={enteredGoal}
-            onChangeText={goalInputHandler}
-          />
-
-          <Button
-            style={StyleSheet.addButton}
-            title={'Add'}
-            onPress={addGoalHandler}
-          />
-        </View>
+        <GoalInput onAddGoal={addGoalHandler} />
         <FlatList
           style={styles.goalListContainer}
           data={goals}

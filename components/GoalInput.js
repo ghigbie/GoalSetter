@@ -10,10 +10,14 @@ import {
   TextInput,
 } from 'react-native';
 
-const GoalInput = () => {
+const GoalInput = ({onAddGoal}) => {
   const [enteredGoal, setEnteredGoal] = useState('');
   const goalInputHandler = enteredText => {
     setEnteredGoal(enteredText);
+  };
+
+  const handleAddGoal = payload => {
+    onAddGoal(payload);
   };
 
   return (
@@ -28,7 +32,10 @@ const GoalInput = () => {
       <Button
         style={StyleSheet.addButton}
         title={'Add'}
-        onPress={addGoalHandler}
+        onPress={() => {
+          handleAddGoal({goal: enteredGoal});
+          setEnteredGoal('');
+        }}
       />
     </View>
   );
