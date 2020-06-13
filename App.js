@@ -7,6 +7,7 @@
  */
 
 import React, {useState} from 'react';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,13 +19,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import GoalItem from './components/GoalItem';
 
 const App: () => React$Node = () => {
   const [enteredGoal, setEnteredGoal] = useState('');
@@ -42,19 +37,25 @@ const App: () => React$Node = () => {
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
-        <TextInput
-          placeholder={'Add a goal'}
-          style={styles.input}
-          value={enteredGoal}
-          onChangeText={goalInputHandler}
-        />
+        <View style={styles.addGoals}>
+          <TextInput
+            placeholder={'Add a goal'}
+            style={styles.input}
+            value={enteredGoal}
+            onChangeText={goalInputHandler}
+          />
 
-        <Button title={'Add'} onPress={addGoalHandler} />
-      </View>
-      <View style={styles.list}>
-        {goals.map((goal, index) => (
-          <Text key={index}>{goal}</Text>
-        ))}
+          <Button
+            style={StyleSheet.addButton}
+            title={'Add'}
+            onPress={addGoalHandler}
+          />
+        </View>
+        <View style={styles.list}>
+          {goals.map((goal, index) => (
+            <GoalItem key={index} goal={goal} />
+          ))}
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -63,6 +64,8 @@ const App: () => React$Node = () => {
 const styles = StyleSheet.create({
   outerView: {
     padding: 30,
+  },
+  addGoals: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -72,6 +75,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     width: '80%',
   },
+  addButton: {},
   list: {},
 });
 export default App;
