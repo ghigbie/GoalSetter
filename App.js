@@ -23,14 +23,19 @@ import GoalItem from './components/GoalItem';
 
 const App: () => React$Node = () => {
   const [enteredGoal, setEnteredGoal] = useState('');
-  const [goals, setGoals] = useState(['moo', 'meow']);
+  const [goals, setGoals] = useState([
+    {id: Math.random().toString(), goal: 'moo'},
+  ]);
 
   const goalInputHandler = enteredText => {
     setEnteredGoal(enteredText);
   };
 
   const addGoalHandler = () => {
-    setGoals(currentGoals => [...currentGoals, enteredGoal]);
+    setGoals(currentGoals => [
+      ...currentGoals,
+      {id: Math.random().toString(), goal: enteredGoal},
+    ]);
     setEnteredGoal('');
   };
 
@@ -54,7 +59,8 @@ const App: () => React$Node = () => {
         <FlatList
           style={styles.goalListContainer}
           data={goals}
-          renderItem={goal => <GoalItem goal={goal.item} />}
+          keyExtractor={(item, index) => item.id}
+          renderItem={goal => <GoalItem goal={goal.item.goal} />}
         />
       </View>
     </SafeAreaView>
