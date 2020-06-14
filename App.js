@@ -35,8 +35,7 @@ const App: () => React$Node = () => {
   };
 
   const removeGoalHandler = goalId => {
-    const newGoalsList = goals.filter(goal => goalId !== goal.id);
-    setGoals(newGoalsList);
+    setGoals(goals.filter(goal => goalId !== goal.id));
   };
 
   return (
