@@ -22,7 +22,7 @@ const GoalInput = ({onAddGoal, visible}) => {
   };
 
   return (
-    <Modal visible={visible}>
+    <Modal visible={visible} animationType="slide">
       <SafeAreaView>
         <View style={styles.addGoals}>
           <TextInput
