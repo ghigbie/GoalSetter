@@ -23,7 +23,7 @@ const GoalInput = ({onAddGoal, closeModal, visible}) => {
 
   return (
     <Modal visible={visible} animationType="slide">
-      <SafeAreaView style={styles.safeArea}>
+      <View style={styles.safeArea}>
         <View style={styles.addGoals}>
           <TextInput
             placeholder={'Add a goal'}
@@ -52,21 +52,22 @@ const GoalInput = ({onAddGoal, closeModal, visible}) => {
             </View>
           </View>
         </View>
-      </SafeAreaView>
+      </View>
     </Modal>
   );
 };
 
 const styles = StyleSheet.create({
   safeArea: {
+    marginTop: '56%',
+    alignItems: 'center',
     flex: 1,
   },
   addGoals: {
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     margin: 20,
     marginTop: 60,
+    width: '100%',
   },
   input: {
     borderColor: '#888',
