@@ -30,10 +30,13 @@ const App: () => React$Node = () => {
   const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = ({goal}) => {
-    setGoals(currentGoals => [
-      ...currentGoals,
-      {id: Math.random().toString(), goal: goal},
-    ]);
+    if (goal !== null && goal.length < 1) {
+      setGoals(currentGoals => [
+        ...currentGoals,
+        {id: Math.random().toString(), goal: goal},
+      ]);
+    }
+    setIsAddMode(!isAddMode);
   };
 
   const removeGoalHandler = goalId => {
