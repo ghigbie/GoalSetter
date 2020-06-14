@@ -43,6 +43,10 @@ const App: () => React$Node = () => {
     setGoals(goals.filter(goal => goalId !== goal.id));
   };
 
+  const closeModal = () => {
+    setIsAddMode(!isAddMode);
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
@@ -52,7 +56,11 @@ const App: () => React$Node = () => {
             setIsAddMode(!isAddMode);
           }}
         />
-        <GoalInput onAddGoal={addGoalHandler} visible={isAddMode} />
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          closeModal={closeModal}
+          visible={isAddMode}
+        />
         <FlatList
           style={styles.goalListContainer}
           data={goals}

@@ -11,7 +11,7 @@ import {
   Modal,
 } from 'react-native';
 
-const GoalInput = ({onAddGoal, visible}) => {
+const GoalInput = ({onAddGoal, closeModal, visible}) => {
   const [enteredGoal, setEnteredGoal] = useState('');
   const goalInputHandler = enteredText => {
     setEnteredGoal(enteredText);
@@ -31,9 +31,9 @@ const GoalInput = ({onAddGoal, visible}) => {
             value={enteredGoal}
             onChangeText={goalInputHandler}
           />
-
+          <Button color="red" title="Cancel" onPress={closeModal} />
           <Button
-            style={StyleSheet.addButton}
+            style={styles.addButton}
             title={'Add'}
             onPress={() => {
               handleAddGoal({goal: enteredGoal});
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
   },
   addButton: {
     width: '100%',
+    marginTop: 40,
   },
 });
 
