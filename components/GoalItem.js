@@ -1,11 +1,13 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+Timport React from 'react';
+import {View, Text, StyleSheet, Touchable} from 'react-native';
 
 const GoalItem = ({goal}) => {
   return (
-    <View style={styles.container}>
-      <Text styles={styles.text}>{goal}</Text>
-    </View>
+    <Touchable>
+        <View style={styles.container}>
+            <Text styles={styles.text}>{goal}</Text>
+        </View>
+    </Touchable>
   );
 };
 
