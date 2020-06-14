@@ -34,6 +34,11 @@ const App: () => React$Node = () => {
     ]);
   };
 
+  const removeGoalHandler = goalId => {
+    const newGoalsList = goals.filter(goal => goalId !== goal.id);
+    setGoals(newGoalsList);
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
@@ -46,7 +51,7 @@ const App: () => React$Node = () => {
             <GoalItem
               goal={goal.item.goal}
               onDelete={() => {
-                console.log("Don't push me!");
+                removeGoalHandler(goal.item.id);
               }}
             />
           )}
