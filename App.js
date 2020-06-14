@@ -25,12 +25,14 @@ import GoalItem from './components/GoalItem';
 const App: () => React$Node = () => {
   const [goals, setGoals] = useState([
     {id: Math.random().toString(), goal: 'moo'},
+    {id: Math.random().toString(), goal: 'Meow'},
   ]);
+  const [isAddMode, setIsAddMode] = useState(false);
 
-  const addGoalHandler = payload => {
+  const addGoalHandler = ({goal}) => {
     setGoals(currentGoals => [
       ...currentGoals,
-      {id: Math.random().toString(), goal: payload.goal},
+      {id: Math.random().toString(), goal: goal},
     ]);
   };
 
@@ -41,7 +43,13 @@ const App: () => React$Node = () => {
   return (
     <SafeAreaView>
       <View style={styles.outerView}>
-        <GoalInput onAddGoal={addGoalHandler} />
+        <Button
+          title={'Add New Goal'}
+          onPress={() => {
+            setIsAddMode(!isAddMode);
+          }}
+        />
+        <GoalInput onAddGoal={addGoalHandler} visible={isAddMode} />
         <FlatList
           style={styles.goalListContainer}
           data={goals}
@@ -49,9 +57,7 @@ const App: () => React$Node = () => {
           renderItem={goal => (
             <GoalItem
               goal={goal.item.goal}
-              onDelete={() => {
-                removeGoalHandler(goal.item.id);
-              }}
+              onDelete={() => removeGoalHandler(goal.item.id)}
             />
           )}
         />

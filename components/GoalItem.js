@@ -4,10 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 const GoalItem = ({goal, onDelete}) => {
   return (
     //add conditional rendering based on phone operating system
-    <TouchableOpacity
-      onPress={() => {
-        onDelete();
-      }}>
+    <TouchableOpacity onPress={onDelete}>
       <View style={styles.container}>
         <Text styles={styles.text}>{goal}</Text>
       </View>

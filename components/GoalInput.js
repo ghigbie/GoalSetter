@@ -8,9 +8,10 @@ import {
   StatusBar,
   Button,
   TextInput,
+  Modal,
 } from 'react-native';
 
-const GoalInput = ({onAddGoal}) => {
+const GoalInput = ({onAddGoal, visible}) => {
   const [enteredGoal, setEnteredGoal] = useState('');
   const goalInputHandler = enteredText => {
     setEnteredGoal(enteredText);
@@ -21,23 +22,27 @@ const GoalInput = ({onAddGoal}) => {
   };
 
   return (
-    <View style={styles.addGoals}>
-      <TextInput
-        placeholder={'Add a goal'}
-        style={styles.input}
-        value={enteredGoal}
-        onChangeText={goalInputHandler}
-      />
+    <Modal visible={visible}>
+      <SafeAreaView>
+        <View style={styles.addGoals}>
+          <TextInput
+            placeholder={'Add a goal'}
+            style={styles.input}
+            value={enteredGoal}
+            onChangeText={goalInputHandler}
+          />
 
-      <Button
-        style={StyleSheet.addButton}
-        title={'Add'}
-        onPress={() => {
-          handleAddGoal({goal: enteredGoal});
-          setEnteredGoal('');
-        }}
-      />
-    </View>
+          <Button
+            style={StyleSheet.addButton}
+            title={'Add'}
+            onPress={() => {
+              handleAddGoal({goal: enteredGoal});
+              setEnteredGoal('');
+            }}
+          />
+        </View>
+      </SafeAreaView>
+    </Modal>
   );
 };
 
@@ -46,6 +51,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    margin: 20,
+    marginTop: 60,
   },
   input: {
     borderColor: 'black',
