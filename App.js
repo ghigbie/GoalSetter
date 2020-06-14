@@ -42,7 +42,14 @@ const App: () => React$Node = () => {
           style={styles.goalListContainer}
           data={goals}
           keyExtractor={(item, index) => item.id}
-          renderItem={goal => <GoalItem goal={goal.item.goal} />}
+          renderItem={goal => (
+            <GoalItem
+              goal={goal.item.goal}
+              onDelete={() => {
+                console.log("Don't push me!");
+              }}
+            />
+          )}
         />
       </View>
     </SafeAreaView>

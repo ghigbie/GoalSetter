@@ -1,13 +1,17 @@
-Timport React from 'react';
-import {View, Text, StyleSheet, Touchable} from 'react-native';
+import React from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
-const GoalItem = ({goal}) => {
+const GoalItem = ({goal, onDelete}) => {
   return (
-    <Touchable>
-        <View style={styles.container}>
-            <Text styles={styles.text}>{goal}</Text>
-        </View>
-    </Touchable>
+    //add conditional rendering based on phone operating system
+    <TouchableOpacity
+      onPress={() => {
+        onDelete();
+      }}>
+      <View style={styles.container}>
+        <Text styles={styles.text}>{goal}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
