@@ -8,16 +8,7 @@
 
 import React, {useState} from 'react';
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  View,
-  Text,
-  StatusBar,
-  Button,
-  TextInput,
-} from 'react-native';
+import {SafeAreaView, StyleSheet, FlatList, View, Button} from 'react-native';
 
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
