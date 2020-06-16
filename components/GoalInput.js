@@ -1,15 +1,5 @@
 import React, {useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  FlatList,
-  View,
-  Text,
-  StatusBar,
-  Button,
-  TextInput,
-  Modal,
-} from 'react-native';
+import {StyleSheet, View, Button, TextInput, Modal} from 'react-native';
 
 const GoalInput = ({onAddGoal, closeModal, visible}) => {
   const [enteredGoal, setEnteredGoal] = useState('');
