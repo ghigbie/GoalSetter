@@ -4,14 +4,23 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
-
+import React, {useState, useSelector} from 'react';
 import {SafeAreaView, StyleSheet, FlatList, View, Button} from 'react-native';
 
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
 
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import goalsReducer from './store/goals';
+const rootReducer = combineReducers({
+  goals: goalsReducer,
+});
+const store = createStore(rootReducer);
+
 const App: () => React$Node = () => {
+  const goalsStore = useSelector(state => state.goals);
+
   const [goals, setGoals] = useState([
     {id: Math.random().toString(), goal: 'moo'},
     {id: Math.random().toString(), goal: 'Meow'},
@@ -37,32 +46,34 @@ const App: () => React$Node = () => {
   };
 
   return (
-    <SafeAreaView>
-      <View style={styles.outerView}>
-        <Button
-          title={'Add New Goal'}
-          onPress={() => {
-            setIsAddMode(!isAddMode);
-          }}
-        />
-        <GoalInput
-          onAddGoal={addGoalHandler}
-          closeModal={closeModal}
-          visible={isAddMode}
-        />
-        <FlatList
-          style={styles.goalListContainer}
-          data={goals}
-          keyExtractor={(item, index) => item.id}
-          renderItem={goal => (
-            <GoalItem
-              goal={goal.item.goal}
-              onDelete={() => removeGoalHandler(goal.item.id)}
-            />
-          )}
-        />
-      </View>
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView>
+        <View style={styles.outerView}>
+          <Button
+            title={'Add New Goal'}
+            onPress={() => {
+              setIsAddMode(!isAddMode);
+            }}
+          />
+          <GoalInput
+            onAddGoal={addGoalHandler}
+            closeModal={closeModal}
+            visible={isAddMode}
+          />
+          <FlatList
+            style={styles.goalListContainer}
+            data={goalsStore}
+            keyExtractor={(item, index) => item.id}
+            renderItem={goal => (
+              <GoalItem
+                goal={goal.item.goal}
+                onDelete={() => removeGoalHandler(goal.item.id)}
+              />
+            )}
+          />
+        </View>
+      </SafeAreaView>
+    </Provider>
   );
 };
 
@@ -85,4 +96,5 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
 });
+
 export default App;

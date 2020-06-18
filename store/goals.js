@@ -5,3 +5,5 @@ const initialState = {
 const goalsReducer = (state = initialState, action) => {
   return state;
 };
+
+export default goalsReducer;
