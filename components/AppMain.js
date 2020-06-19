@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {SafeAreaView, StyleSheet, FlatList, View, Button} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {StyleSheet, FlatList, View, Button} from 'react-native';
 
-import GoalInput from './components/GoalInput';
-import GoalItem from './components/GoalItem';
+import GoalInput from './GoalInput';
+import GoalItem from './GoalItem';
 
 const AppMain = () => {
-  //const goalsStore = useSelector(state => state.goals);
+  const goalsStore = useSelector(state => state.goals.goals);
 
   const [goals, setGoals] = useState([
     {id: Math.random().toString(), goal: 'moo'},
@@ -46,7 +47,7 @@ const AppMain = () => {
       />
       <FlatList
         style={styles.goalListContainer}
-        data={goals}
+        data={goalsStore}
         keyExtractor={(item, index) => item.id}
         renderItem={goal => (
           <GoalItem
