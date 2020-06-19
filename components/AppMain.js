@@ -1,31 +1,35 @@
 import React, {useState} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
 import {StyleSheet, FlatList, View, Button} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
+import {addGoal, deleteGoal} from './../store/actions/goals';
 
 import GoalInput from './GoalInput';
 import GoalItem from './GoalItem';
 
 const AppMain = () => {
-  const goalsStore = useSelector(state => state.goals.goals);
+  const dispatch = useDispatch();
+  const goals = useSelector(state => state.goals.goals);
 
-  const [goals, setGoals] = useState([
-    {id: Math.random().toString(), goal: 'moo'},
-    {id: Math.random().toString(), goal: 'Meow'},
-  ]);
+  //   const [goals, setGoals] = useState([
+  //     {id: Math.random().toString(), goal: 'moo'},
+  //     {id: Math.random().toString(), goal: 'Meow'},
+  //   ]);
   const [isAddMode, setIsAddMode] = useState(false);
 
   const addGoalHandler = ({goal}) => {
     if (goal !== null && goal.length < 1) {
-      setGoals(currentGoals => [
-        ...currentGoals,
-        {id: Math.random().toString(), goal: goal},
-      ]);
+      //   setGoals(currentGoals => [
+      //     ...currentGoals,
+      //     {id: Math.random().toString(), goal: goal},
+      //   ]);
+      dispatch(addGoal(goal));
     }
     setIsAddMode(!isAddMode);
   };
 
   const removeGoalHandler = goalId => {
-    setGoals(goals.filter(goal => goalId !== goal.id));
+    //setGoals(goals.filter(goal => goalId !== goal.id));
+    dispatch(deleteGoal);
   };
 
   const closeModal = () => {
@@ -47,7 +51,7 @@ const AppMain = () => {
       />
       <FlatList
         style={styles.goalListContainer}
-        data={goalsStore}
+        data={goals}
         keyExtractor={(item, index) => item.id}
         renderItem={goal => (
           <GoalItem
