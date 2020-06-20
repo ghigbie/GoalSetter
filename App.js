@@ -5,7 +5,8 @@ import AppMain from './components/AppMain';
 
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
-import goalsReducer from './store/goals';
+import goalsReducer from './store/reducers/goals';
+
 const rootReducer = combineReducers({
   goals: goalsReducer,
 });
